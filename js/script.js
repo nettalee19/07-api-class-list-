@@ -1,9 +1,9 @@
 const container = document.querySelector("#container")
-//const proxy = 'https://api.allorigins.win/raw?url=';
+const proxy = 'https://api.allorigins.win/raw?url=';
 const studentsApi = 'https://appleseed-wa.herokuapp.com/api/users/'
 
 const getStudents = async () => {
-    const dataAll = await fetch(`${studentsApi}`);//${proxy}
+    const dataAll = await fetch(`${proxy}${studentsApi}`);//
     const dataStudents = await dataAll.json();
     //console.log(dataStudents)
 
@@ -43,7 +43,7 @@ async function createTable() {
     </thead>`
     
     students.forEach((s) => {
-        console.log(s)
+        //console.log(s)
         table.innerHTML += `<tr>
             <td>${s.id}</td>
             <td>${s.first_Name}</td>
