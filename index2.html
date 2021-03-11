@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css"
+        integrity="sha256-h20CPZ0QyXlBuAw7A+KluUYx/3pK+c7lYEpqLTlxjYQ=" crossorigin="anonymous" />
+    <script src="./script2.js" defer></script>
+    <link rel="stylesheet" href="style/style.css">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <header class="header">
+        <h1>My To-do list</h1>
+    </header>
+
+    <section class="new-task">
+        <form id="form" onsubmit="return false">
+            <div class="text">
+                <label for="text">Add new Task:</label>
+                <input type="text" name="text" id="text">
+            </div>
+            <div class="importance">
+                <label for="importance">Importance</label>
+                <select name="importance" id="importance">
+                    <option value="A">High</option>
+                    <option value="B">Medium</option>
+                    <option value="C">Low</option>
+                </select>
+            </div>
+            <button class="submit">Add</button>
+        </form>
+    </section>
+
+    <div class="sort-list">
+        <p>Sort By:</p>
+        <select name="sort" id="sort">
+            <option value="completed">Completed</option>
+            <option value="importance">Importance</option>
+            <option value="newest">Newest</option>
+        </select>
+        <button id="sort-list-btn">Show</button>
+    </div>
+
+    <section class="tasks-table">
+        <table class="table">
+            <tbody id="table-body">
+                <tr>
+                    <th>Description</th>
+                    <th>Completed</th>
+                    <th>Importance</th>
+                    <th>Date</th>
+                    <th>Update</th>
+                    <th>Delete</th>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <div id="myModal" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="modal-div">
+                <label for="text">Fill new task's text:</label>
+                <input type="text" name="text" id="update-text">
+            </div>
+            <div class="modal-div">
+                <label for="completed">Is it Done?</label>
+                <input type="checkbox" name="completed" id="update-completed">
+            </div>
+            <button class="update-btn" onclick="updateTaskById()">Update</button>
+        </div>
+    </div>
+
+</body>
