@@ -53,15 +53,20 @@ async function createTable() {
             <td>${s.City}</td>
             <td>${s.Gender}</td>
             <td>${s.Hobby}</td>
-            <td><i class="far fa-edit"></i></td>
-            <td><i class="fas fa-trash-alt"></i></td>
+            <td><i class="far fa-edit edit"></i></td>
+            <td><i class="fas fa-trash-alt delete"></i></td>
             </tr>`
     })
     container.appendChild(table)
 
 }
 
-
+table.addEventListener("click", e => {
+    if(e.target.classList.contains('delete')){
+        console.log(e.target);
+        e.target.parentElement.parentElement.remove();
+    }
+})
 
 
 
@@ -71,27 +76,6 @@ async function createTable() {
      // const dataPerStudent = await fetch(`${proxy}${studentsApi}${num}`);
     // const dataStudent = await dataPerStudent.json();
 
-
-
-// let studentsArray = []
-
-// const studentsObjToArray = () =>{
-//     const data = await fetch(`${proxy}${studentsApi}${num}`);
-//     const dataStudent = await data.json();
-//     //const theData = await dataStudent.data;
-//     let studentObj = {
-//         id: dataStudent.id
-//         // firstName: theData.firstName;
-//         // lastName: theData.lastName
-//         // age: theData.age
-//         // city: theData.city
-//         // gender: theData.gender
-//         // hobby: theData.hobby
-//     }
-
-//     return studentObj
-    
-// }
 
 
 
