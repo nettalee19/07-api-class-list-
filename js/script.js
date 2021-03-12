@@ -61,7 +61,7 @@ async function createTable() {
 
 }
 
-table.addEventListener("click", e => {
+container.addEventListener("click", e => {
     if(e.target.classList.contains('delete')){
         console.log(e.target);
         e.target.parentElement.parentElement.remove();
