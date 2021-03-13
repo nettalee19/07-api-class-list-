@@ -74,8 +74,7 @@ searchBar.addEventListener('keyup', (e) =>{
 
     });
     console.log(filteredStudents)
-    //displayStudents(filteredStudents).remove()
-    //container.remove()
+    
     displayStudents(filteredStudents)
  })
 
@@ -97,9 +96,8 @@ async function createTable() {
     displayStudents()
 }
 
-async function displayStudents (){//filteredStudents
-    students.forEach((s) => {//filteredStudents
-        //console.log(s)
+async function displayStudents (){
+    students.forEach((s) => {
         table.innerHTML += `<tr>
             <td>${s.id}</td>
             <td>${s.first_Name}</td>
@@ -137,10 +135,8 @@ container.addEventListener("click", e => {
 
 container.addEventListener("click", e => {
     if(e.target.classList.contains('edit')){
-        // console.log(e.target.parentElement.parentElement.parentElement); ///entire row
-        //console.log(e.target.parentElement); //the edit button
-        //editStudent(e.target.parentElement.parentElement); ///entire row
-        editStudent(students); ///entire row
+
+        editStudent(students);
         
     }
 })
