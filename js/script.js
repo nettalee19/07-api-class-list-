@@ -1,17 +1,23 @@
 const container = document.querySelector("#container")
 const proxy = 'https://api.allorigins.win/raw?url=';
 const studentsApi = 'https://appleseed-wa.herokuapp.com/api/users/'
+const categories = document.querySelector('#categories');
+const searchBar = document.querySelector('#searchBar');
+let students = [];
+let table;
+
 
 const getStudents = async () => {
     const dataAll = await fetch(`${proxy}${studentsApi}`);//
     const dataStudents = await dataAll.json();
-    //console.log(dataStudents)
+    
 
     
-    let students = await Promise.all(
+    students = await Promise.all(
         dataStudents.map(async (s) =>{
             let info = await getPepole(s.id)
-            return{id: s.id, first_Name: s.firstName, last_Name: s.lastName, Capsule: s.capsule, Age: info.age, City: info.city, Gender: info.gender, Hobby: info.hobby}
+            
+            return{id: s.id, first_Name: s.firstName, last_Name: s.lastName, cCapsule: s.capsule, Age: info.age, City: info.city, Gender: info.gender, Hobby: info.hobby}
         })
     )
     return students;
@@ -26,9 +32,56 @@ async function getPepole(id) {
     return await info.json();
 }
 
+
+
+
+
+searchBar.addEventListener('keyup', (e) =>{
+    
+    const searchString = e.target.value.toLowerCase();
+
+    const filteredStudents = students.filter(s =>{
+       return s.first_Name.toLowerCase().includes(searchString)
+       
+       //todo
+       //    switch(cat){
+    //        case last_Name:
+    //        return s.first_Name.toLowerCase().includes(searchString)
+    //        break;
+    //        case first_Name:
+    //        return s.last_Name.toLowerCase().includes(searchString)
+    //        break;
+    //        case last_Name:
+    //        return s.last_Name.toLowerCase().includes(searchString)
+    //        break;
+    //        case cCapsule:
+    //        return s.Capsule.toLowerCase().includes(searchString)
+    //        break;
+    //        case Age:
+    //        return s.Age.toLowerCase().includes(searchString)
+    //        break;
+    //        case City:
+    //        return s.City.toLowerCase().includes(searchString)
+    //        break;
+    //        case Gender:
+    //        return s.Gender.toLowerCase().includes(searchString)
+    //        break;
+    //        case Hobby:
+    //        return s.Hobby.toLowerCase().includes(searchString)
+    //        break;
+    //    }
+
+
+    });
+    console.log(filteredStudents)
+    //displayStudents(filteredStudents).remove()
+    //container.remove()
+    displayStudents(filteredStudents)
+ })
+
 async function createTable() {
-    let students = await getStudents();
-    let table = document.createElement('table');
+    students = await getStudents();
+    table = document.createElement('table');
     table.innerHTML += `<thead>
     <tr>
     <th>id</th>
@@ -41,10 +94,60 @@ async function createTable() {
     <th>Hobby</th>
     </tr>
     </thead>`
-    
-    students.forEach((s) => {
+    displayStudents()
+}
+
+async function displayStudents (){//filteredStudents
+    students.forEach((s) => {//filteredStudents
         //console.log(s)
         table.innerHTML += `<tr>
+            <td>${s.id}</td>
+            <td>${s.first_Name}</td>
+            <td>${s.last_Name}</td>
+            <td>${s.cCapsule}</td>
+            <td>${s.Age}</td>
+            <td>${s.City}</td>
+            <td>${s.Gender}</td>
+            <td>${s.Hobby}</td>
+            <td><i class="far fa-edit edit"></i></td>
+            <td><i class="fas fa-trash-alt delete"></i></td>
+            </tr>`
+    })
+    
+    container.appendChild(table)
+
+}
+
+
+
+
+
+container.addEventListener("click", e => {
+    if(e.target.classList.contains('delete')){
+        e.target.parentElement.parentElement.remove();
+    }
+})
+
+
+
+
+
+
+
+
+container.addEventListener("click", e => {
+    if(e.target.classList.contains('edit')){
+        // console.log(e.target.parentElement.parentElement.parentElement); ///entire row
+        //console.log(e.target.parentElement); //the edit button
+        //editStudent(e.target.parentElement.parentElement); ///entire row
+        editStudent(students); ///entire row
+        
+    }
+})
+
+editStudent = (students) =>{
+    students.forEach((s) => {
+        s.target.parentElement.parentElement.innerHTML += `<tr>
             <td>${s.id}</td>
             <td>${s.first_Name}</td>
             <td>${s.last_Name}</td>
@@ -57,24 +160,10 @@ async function createTable() {
             <td><i class="fas fa-trash-alt delete"></i></td>
             </tr>`
     })
-    container.appendChild(table)
-
 }
 
-container.addEventListener("click", e => {
-    if(e.target.classList.contains('delete')){
-        console.log(e.target);
-        e.target.parentElement.parentElement.remove();
-    }
-})
 
 
-
-
-
-
-     // const dataPerStudent = await fetch(`${proxy}${studentsApi}${num}`);
-    // const dataStudent = await dataPerStudent.json();
 
 
 

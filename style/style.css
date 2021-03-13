@@ -1,0 +1,90 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face{
+    font-family: 'NotoSans-Regular';
+    src: url(/style/NotoSans-Regular.ttf);
+    font-style:normal;
+    font-weight: 400;
+  
+  }
+
+body{
+    font-family: 'NotoSans-Regular';
+    /* background: lightpink; */
+    background:url('/style/19333447.jpg') no-repeat center center/cover;
+    /* background:url('/style/depositphotos_265528278-stock-illustration-doodle-background-hand-drawn-icons.jpg') no-repeat center center/cover; */
+    width: 90vw;
+    height: 160vh;
+    
+}
+
+h1{
+    padding: 20px;
+    text-align: center;
+    color: lightyellow;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+    font-size: 45px;  
+}
+
+#search{
+    text-align: center;
+    margin: 20px;
+}
+
+#container{
+    display: flex;
+    flex-direction: column;
+    /* justify-content:flex-end; */
+    margin-bottom: 20px;
+    margin-left: 130px;
+}
+
+th{
+    /* border: black 1px solid; */
+    color: lightyellow;
+    text-shadow:
+    -1px -1px 0 #000,
+    1px -1px 0 #000,
+    -1px 1px 0 #000,
+    1px 1px 0 #000;
+}
+
+td{
+    /* border: black 1px solid; */
+    text-align: center;
+    /* background-color: rgba(211, 123, 22, 0.37); */
+    background-color: rgba(211, 211, 211, 0.93);
+    width: 2vw;
+    margin-bottom: 10px;
+    border-radius: 1px;
+}
+
+/* i:hover {
+    transition: 1ms ;
+} */
+.edit{
+    color: rgb(137, 43, 226);
+    
+}
+.edit:hover{
+    color: rgba(137, 43, 226, 0.473);
+    transition: color 0.2s;
+}
+/* .delete{
+    transition: 0.5s ;
+} */
+
+.delete:hover{
+    color: red;
+    transition: color 0.2s;
+}
+
+
